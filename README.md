@@ -1,4 +1,4 @@
-# Trash Panda 🦝
+# Trash Panda 
 
 A fun browser-based game built with HTML, CSS, and JavaScript.
 
