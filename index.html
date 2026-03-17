@@ -123,7 +123,7 @@ High Score: <span id="highScore">0</span>
 
 <button onclick="startGame()">Start</button>
 <button onclick="resetHighScore()">Reset High Score</button>
-<button onclick="toggleMusic()" id="musicBtn">Music On</button>
+<button onclick="toggleMusic()" id="musicBtn">Sound Off</button>
 
 <div class="grid" id="grid"></div>
 
@@ -173,10 +173,10 @@ function toggleMusic() {
   if (musicOn) {
     unlockAudio();
     music.play().catch(() => {});
-    btn.textContent = "🎵 Music Off";
+    btn.textContent = "Sound Off";
   } else {
     music.pause();
-    btn.textContent = "🎵 Music On";
+    btn.textContent = "Sound On";
   }
 }
 
@@ -272,7 +272,7 @@ function hitHole(index) {
   score += points;
 
   const sound = document.getElementById("bonkSound").cloneNode(true);
-  sound.volume = 0.5;
+  sound.volume = musicOn ? 0.5 : 0;
   sound.play().catch(() => {});
 
   clearPanda();
