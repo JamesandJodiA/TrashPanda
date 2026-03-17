@@ -123,6 +123,7 @@ High Score: <span id="highScore">0</span>
 
 <button onclick="startGame()">Start</button>
 <button onclick="resetHighScore()">Reset High Score</button>
+<button onclick="toggleMusic()" id="musicBtn">Music On</button>
 
 <div class="grid" id="grid"></div>
 
@@ -164,11 +165,26 @@ for (let i = 0; i < 9; i++) {
   holes.push(hole);
 }
 
+let musicOn = false;
+
+function toggleMusic() {
+  musicOn = !musicOn;
+  const btn = document.getElementById("musicBtn");
+  if (musicOn) {
+    unlockAudio();
+    music.play().catch(() => {});
+    btn.textContent = "🎵 Music Off";
+  } else {
+    music.pause();
+    btn.textContent = "🎵 Music On";
+  }
+}
+
 function startGame() {
-  unlockAudio();
-  document.getElementById("music").currentTime = 0;
-  document.getElementById("music").play(); 
-  music.volume = 0.35;
+  if (musicOn) {
+    music.currentTime = 0;
+    music.play().catch(() => {});
+  }
   score = 0;
   misses = 3;
   speed = 1400;
@@ -176,7 +192,6 @@ function startGame() {
   gameOverEl.style.display = "none";
   updateUI();
   loop();
-  
 }
 
 function resetHighScore() {
