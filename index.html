@@ -143,7 +143,7 @@ const gameOverEl = document.getElementById("gameOver");
 
 let score = 0;
 let misses = 3;
-let speed = 1400;
+let speed = 1800;
 let running = false;
 let activeIndex = null;
 let spawnTimer;
@@ -187,7 +187,7 @@ function startGame() {
   }
   score = 0;
   misses = 3;
-  speed = 1400;
+  speed = 1800;
   running = true;
   gameOverEl.style.display = "none";
   updateUI();
@@ -205,8 +205,8 @@ function loop() {
 
   spawnPanda();
 
-  speed *= 0.98; // difficulty ramp
-  if (speed < 250) speed = 250;
+  speed *= 0.99; // difficulty ramp
+  if (speed < 400) speed = 400;
 
   spawnTimer = setTimeout(loop, speed);
 }
